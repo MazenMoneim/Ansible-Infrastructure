@@ -1,0 +1,5 @@
+---
+# defaults file for Database
+db_user: mazen
+db_pass: mazen
+db_name: mazen_db

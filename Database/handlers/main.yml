@@ -1,0 +1,6 @@
+---
+# handlers file for Databas
+      - name: Restart mysql
+        service:
+         name: mysql
+         state: restarted

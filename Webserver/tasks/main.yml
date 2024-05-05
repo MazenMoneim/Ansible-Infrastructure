@@ -1,0 +1,48 @@
+---
+# tasks file for Webserve
+      - name: Update our instance
+        apt:  
+          name: "*"
+          state: latest
+          update_cache: yes
+
+      - name: Install Apache Server
+        apt:
+          name: apache2
+          state: latest
+
+      - name: Change WD to the html dir
+        shell: cd /var/www/html
+
+      - name: Download the web file from github
+        get_url:
+          url: https://github.com/mudasirhaji/website/raw/main/website.zip
+          dest: /var/www/html/
+
+      - name: Download Unzip Package
+        apt:
+          name: unzip
+          state: latest
+
+      - name: Unzip the web folder
+        ansible.builtin.unarchive:
+          src: /var/www/html/website.zip
+          dest: /var/www/html
+          remote_src: yes
+
+      - name: Copy the content of the website to html dir
+        copy:
+          src: /var/www/html/website/
+          dest: /var/www/html
+          remote_src: yes
+
+      - name: Clear the website.zip folder
+        file:
+          path: /var/www/html/website.zip
+          state: absent
+      
+      - name: Start Apache Server
+        ansible.builtin.service:
+          enabled: yes
+          name: apache2 
+          state: started

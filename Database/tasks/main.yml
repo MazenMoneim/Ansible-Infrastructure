@@ -1,0 +1,46 @@
+---
+# tasks file for Database
+      - name: Update our instance
+        apt:  
+          name: "*"
+          state: latest
+          update_cache: yes
+
+      - name: Install mysql Server
+        apt:
+          name: mysql-server
+          state: latest    
+
+      - name: Install python3-mysqldb 
+        apt:
+            name: python3-mysqldb
+            state: latest    
+
+
+      - name: Start Mysql Server
+        ansible.builtin.service:
+          enabled: yes
+          name: mysql 
+          state: started
+      
+      - name: createing mysql user
+        mysql_user:
+          name: "{{db_user}}"
+          password: "{{db_pass}}"
+          priv: '*.*:ALL'
+          host: '%'
+          state: present
+
+      - name: createing db
+        mysql_db:
+          name: "{{db_name}}"
+          state: present
+
+      - name: Enable remote login to mysql
+        lineinfile:
+          path: /etc/mysql/mysql.conf.d/mysqld.cnf
+          regexp: '^bind-address'
+          line: 'bind-address = 0.0.0.0'
+          backup: yes
+        notify:
+          - Restart mysql

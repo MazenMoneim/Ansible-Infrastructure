@@ -1,0 +1,31 @@
+---
+- name: Deploy our Database (MySql)
+  hosts: "{{host}}"
+  become: yes
+  become_user: root
+  roles:
+      - Database
+
+
+- name: Deploy our Webserver
+  hosts: "{{host}}"
+  become: yes
+  become_user: root
+  roles:
+      - Webserver
+
+- name: Deploy our NTP server
+  hosts: "{{host}}"
+  become: yes
+  become_user: root
+  roles:
+      - NTP
+
+
+- name: Deploy our NTP_Clients
+  hosts: "{{host}}"
+  become: yes
+  become_user: root
+  roles:
+      - NTP_Client
+
