@@ -23,7 +23,7 @@ First things first, we kickstarted our infrastructure setup by using shell scrip
 * Our work culminated in a single playbook.yml file. This playbook orchestrated the entire deployment process.
 * It included references to our roles, defined hosts, vars and specified the order of execution.
 * Running this playbook became our go-to command for provisioning and managing our infrastructure.
-#
+
 #
 
 ![server](https://github.com/MazenMoneim/Ansible-infrastructure/assets/135109542/135c6e7b-5527-4d67-922c-3d8c283ff34e)
