@@ -1,4 +1,4 @@
-# Deploy Infrastructure using Ansible 📌
+# Deploy Infrastructure using Ansible 
 ## Project Overview.
 
 First things first, we kickstarted our infrastructure setup by using shell scripts to install Ansible on an `EC2` instance. Additionally, we fine-tuned our automation process by configuring `automate_ssh_pub.sh`. This script ensured that our public key was copied to all other instances, and it seamlessly appended the public key to the `authorized_keys` files. This step was crucial to automate and for secure and efficient communication between our Ansible control node and the managed servers.
