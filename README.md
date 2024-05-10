@@ -15,15 +15,24 @@ First things first, we kickstarted our infrastructure setup by using shell scrip
 * Time synchronization across our infrastructure was critical. To achieve this, we set up an `NTP` server on our Ansible control node.
 * Additionally, we configured `NTP` clients on all our web servers and databases. This ensured that they synced their clocks with our central `NTP` server.
 * Accurate timekeeping is essential for various tasks, including logging, security certificates, and coordinated system operations.
-#### 4- Ansible Roles for Organization:
+#
+### How we get the job done!
+#### - Using Modules
+* `apt`: It allows you to install, update, or remove packages using the system’s package manager.
+* `replace`: You can use it to search for a specific pattern (e.g., a string or regular expression) and replace it with another value, and with `replace: ''` we deleted this pattern.
+* `lineinfile`: The lineinfile module allows you to manage lines within a file.
+* `service`: The service module controls system services (starting, stopping, enabling, or disabling services).
+* `shell`: The shell module runs shell commands directly on the target system.
+* `get_url`: The get_url module downloads files from a URL and saves them locally.
+* `unarchive`: The unarchive module extracts compressed archives (e.g., .tar.gz, .zip) on the target system.
+* `copy`: The copy module copies files or directories from the control machine to the target system.
+* `file`: The file module manages files and directories, The `absent` state ensures that a file or directory does not exist.
+* `mysql_user` and `mysql_db`: These modules manage MySQL users and databases.
+* `notify`: The notify module triggers handlers (tasks defined elsewhere in the playbook) when notified.
+#### - Ansible Roles for Organization:
 * To keep our playbook organized and modular, we configured Ansible roles.
 * Each role encapsulated a specific functionality (e.g., web server setup, database configuration, `NTP` management).
 * Roles allowed us to reuse code, maintain consistency, and simplify playbook maintenance.
-#### 5- The Playbook:
-* Our work culminated in a single playbook.yml file. This playbook orchestrated the entire deployment process.
-* It included references to our roles, defined hosts, vars and specified the order of execution.
-* Running this playbook became our go-to command for provisioning and managing our infrastructure.
-
+* This feature helps us to write our project in a single simple playbook.yml file, This playbook orchestrated the entire deployment process.
 #
-
 ![server](https://github.com/MazenMoneim/Ansible-infrastructure/assets/135109542/135c6e7b-5527-4d67-922c-3d8c283ff34e)
