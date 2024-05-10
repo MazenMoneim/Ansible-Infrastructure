@@ -17,7 +17,7 @@ First things first, we kickstarted our infrastructure setup by using shell scrip
 * Accurate timekeeping is essential for various tasks, including logging, security certificates, and coordinated system operations.
 #
 ### How we get the job done!
-#### - Using Modules
+#### Using Modules
 * `apt`: It allows you to install, update, or remove packages using the system’s package manager.
 * `replace`: You can use it to search for a specific pattern (e.g., a string or regular expression) and replace it with another value, and with `replace: ''` we deleted this pattern.
 * `lineinfile`: The lineinfile module allows you to manage lines within a file.
@@ -29,7 +29,7 @@ First things first, we kickstarted our infrastructure setup by using shell scrip
 * `file`: The file module manages files and directories, The `absent` state ensures that a file or directory does not exist.
 * `mysql_user` and `mysql_db`: These modules manage MySQL users and databases.
 * `notify`: The notify module triggers handlers (tasks defined elsewhere in the playbook) when notified.
-#### - Ansible Roles for Organization:
+#### Ansible Roles for Organization:
 * To keep our playbook organized and modular, we configured Ansible roles.
 * Each role encapsulated a specific functionality (e.g., web server setup, database configuration, `NTP` management).
 * Roles allowed us to reuse code, maintain consistency, and simplify playbook maintenance.
