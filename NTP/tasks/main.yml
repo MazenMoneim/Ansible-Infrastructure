@@ -11,12 +11,31 @@
           name: ntp
           state: latest     
 
+      - name: Change the pool zone to africa (nearest servers)
+        replace:
+           path: /etc/ntpsec/ntp.conf
+           regexp: '^pool.*'
+           replace: ''
+        when: inventory_hostname == '52.55.55.113'
+
+      - name: Add africa pool zones
+        lineinfile:
+          path: /etc/ntpsec/ntp.conf
+          line: "{{ item }}"
+        with_items:
+           - "server 0.africa.pool.ntp.org"
+           - "server 1.africa.pool.ntp.org"
+           - "server 2.africa.pool.ntp.org"
+           - "server 3.africa.pool.ntp.org"
+        when: inventory_hostname == '52.55.55.113'
+
+
       - name: Add our ntp server in ntp.conf
         ansible.builtin.lineinfile:
           path: /etc/ntpsec/ntp.conf
           line: 'server 54.226.103.95 prefer iburst'
           insertafter: EOF
-        when: inventory_hostname in ['35.175.227.60', '23.20.68.5', '50.16.49.202' ,'54.147.195.246']
+        when: inventory_hostname in ['34.207.104.53', '52.207.162.105', '18.234.138.124' ,'23.22.183.99']
 
       - name: Start NTP Server
         ansible.builtin.service:
