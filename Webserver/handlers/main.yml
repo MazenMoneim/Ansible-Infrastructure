@@ -1,0 +1,8 @@
+---
+- name: Insuring Apache Installed Successfully
+  debug:
+    msg: "Apache Installed successfully"
+
+- name: Download website successfully
+  debug:
+    msg: "Downlad website successfully"

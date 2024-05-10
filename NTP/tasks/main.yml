@@ -10,7 +10,14 @@
         apt:
           name: ntp
           state: latest     
-      
+
+      - name: Add our ntp server in ntp.conf
+        ansible.builtin.lineinfile:
+          path: /etc/ntpsec/ntp.conf
+          line: 'server 54.226.103.95 prefer iburst'
+          insertafter: EOF
+        when: inventory_hostname in ['35.175.227.60', '23.20.68.5', '50.16.49.202' ,'54.147.195.246']
+
       - name: Start NTP Server
         ansible.builtin.service:
           enabled: yes

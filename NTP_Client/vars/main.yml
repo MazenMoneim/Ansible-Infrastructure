@@ -1,3 +1,0 @@
----
-# vars file for NTP_Client
-host: webservers,databases
